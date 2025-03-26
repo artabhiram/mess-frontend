@@ -29,7 +29,7 @@ const App = () => {
           <Route path='/verify' element={<Verify />}/>
         </Routes>
       </div>
-      <Footer />
+      
     </>
   )
 }
