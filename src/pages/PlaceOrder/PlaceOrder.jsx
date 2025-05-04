@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+
 const PlaceOrder = () => {
 
     const [payment, setPayment] = useState("cod")
@@ -21,7 +22,7 @@ const PlaceOrder = () => {
         phone: ""
     })
 
-    const { getTotalCartAmount, token, food_list, cartItems, url, setCartItems,currency,deliveryCharge } = useContext(StoreContext);
+    const { mess,getTotalCartAmount, token, food_list, cartItems, url, setCartItems,currency,deliveryCharge } = useContext(StoreContext);
 
     const navigate = useNavigate();
 
@@ -45,7 +46,11 @@ const PlaceOrder = () => {
             address: data,
             items: orderItems,
             amount: getTotalCartAmount() + deliveryCharge,
+            messId: mess._id
         }
+        console.log(orderData);
+        
+        
         if (payment === "stripe") {
             let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
             if (response.data.success) {
@@ -55,8 +60,15 @@ const PlaceOrder = () => {
             else {
                 toast.error("Something Went Wrong")
             }
+
         }
         else{
+
+            axios.interceptors.request.use(request => {
+                console.log('Starting Request', JSON.stringify(request, null, 2))
+                return request
+            })
+
             let response = await axios.post(url + "/api/order/placecod", orderData, { headers: { token } });
             if (response.data.success) {
                 navigate("/myorders")

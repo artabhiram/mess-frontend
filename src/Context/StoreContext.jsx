@@ -7,6 +7,8 @@ const StoreContextProvider = (props) => {
 
     const url = "http://localhost:4000"
     const [food_list, setFoodList] = useState([]);
+    const [mess_list, setMessList] = useState([]);
+    const [mess, setMess] = useState(mess_list[0]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
     const currency = "₹";
@@ -48,8 +50,14 @@ const StoreContextProvider = (props) => {
     }
 
     const fetchFoodList = async () => {
-        const response = await axios.get(url + "/api/food/list");
-        setFoodList(response.data.data)
+        const response = await axios.get(url + "/api/food/list", {params: {messId: mess._id }});
+       // console.log();
+        setFoodList(response.data.data);
+    }
+
+    const fetchMessList = async () => {
+        const response = await axios.get(url + "/api/mess/list");
+        setMessList(response.data.data);       
     }
 
     const loadCartData = async (token) => {
@@ -57,16 +65,40 @@ const StoreContextProvider = (props) => {
         setCartItems(response.data.cartData);
     }
 
+
     useEffect(() => {
         async function loadData() {
-            await fetchFoodList();
+            await fetchMessList();
+            //console.log(mess);
+            
+            
+            if(mess){await fetchFoodList();}
+            
             if (localStorage.getItem("token")) {
                 setToken(localStorage.getItem("token"))
                 await loadCartData({ token: localStorage.getItem("token") })
             }
         }
         loadData()
-    }, [])
+    }, [mess_list,mess])
+    
+    
+        // const loadData = async() => {
+        //     await fetchMessList();
+        //     await fetchFoodList();
+        //     setMess(mess_list[0])
+        //     if (localStorage.getItem("token")) {
+        //         setToken(localStorage.getItem("token"))
+        //         await loadCartData({ token: localStorage.getItem("token") })
+        //     }
+        // }
+
+        // loadData()
+
+    //console.log(food_list);
+    
+    
+    
 
     const contextValue = {
         url,
@@ -81,7 +113,11 @@ const StoreContextProvider = (props) => {
         loadCartData,
         setCartItems,
         currency,
-        deliveryCharge
+        deliveryCharge,
+        mess,
+        mess_list,
+        setMessList,
+        setMess,
     };
 
     return (

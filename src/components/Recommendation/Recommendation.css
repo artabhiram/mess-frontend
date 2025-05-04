@@ -1,0 +1,31 @@
+.recommendation {
+    margin-top: 20px;
+}
+
+.recommended-foods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.recommended-foods .food-item {
+    flex: 1 1 30%;
+    max-width: 262.5px;
+}
+
+.recommended-foods .food-item .food-item-info .recommendation-toggle-button{
+    display: none;
+}
+
+.recommendation h3 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.recommendation-toggle-button {
+    width: 100%;
+}
+.review-toggle-button {
+    width:100%;
+}
