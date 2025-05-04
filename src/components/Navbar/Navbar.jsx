@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../Context/StoreContext'
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = ({ setShowLogin,setShowMess ,showMess}) => {
 
   const [menu, setMenu] = useState("home");
   const { getTotalCartAmount, token ,setToken } = useContext(StoreContext);
@@ -18,7 +18,7 @@ const Navbar = ({ setShowLogin }) => {
 
   return (
     <div className='navbar'>
-      <Link to='/'><img className='logo' src={assets.logo} alt="" /></Link>
+      <Link to='/' onClick={() => setShowMess(!showMess)}><img className='logo' src={assets.logo} alt="" /></Link>
       <ul className="navbar-menu">
         <Link to="/" onClick={() => setMenu("home")} className={`${menu === "home" ? "active" : ""}`}>home</Link>
         

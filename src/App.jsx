@@ -10,17 +10,21 @@ import MyOrders from './pages/MyOrders/MyOrders'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify/Verify'
+import MessDisplay from './components/MessDisplay/MessDisplay'
 
 const App = () => {
 
   const [showLogin,setShowLogin] = useState(false);
+  const [showMess,setShowMess] = useState(true);
 
   return (
     <>
     <ToastContainer/>
     {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
+
       <div className='app'>
-        <Navbar setShowLogin={setShowLogin}/>
+        <Navbar setShowLogin={setShowLogin} setShowMess={setShowMess} showMess = {showMess}/>
+        {showMess?<MessDisplay setShowMess={setShowMess}/>:<></>}
         <Routes>
           <Route path='/' element={<Home />}/>
           <Route path='/cart' element={<Cart />}/>

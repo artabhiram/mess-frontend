@@ -6,7 +6,15 @@
 }
 
 .navbar .logo {
-    width: 150px;
+    width: 114px;
+
+}
+
+.navbar .logo:hover{
+    width: 116px;
+    border-radius: 99999px;
+    border: #999999;
+    border-style:dashed;
 }
 
 .navbar-menu {
