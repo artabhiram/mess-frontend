@@ -7,7 +7,7 @@ import { StoreContext } from '../../Context/StoreContext'
 const Navbar = ({ setShowLogin,setShowMess ,showMess}) => {
 
   const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token ,setToken } = useContext(StoreContext);
+  const { getTotalCartAmount, token ,setToken,mess,url } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const logout = () => {
@@ -18,7 +18,13 @@ const Navbar = ({ setShowLogin,setShowMess ,showMess}) => {
 
   return (
     <div className='navbar'>
-      <Link to='/' onClick={() => setShowMess(!showMess)}><img className='logo' src={assets.logo} alt="" /></Link>
+      <Link to='/' 
+        onClick={() => setShowMess(!showMess)}>
+        <img 
+          className='logo' 
+          src={mess?.image ? `${url}/images/${mess.image}` : assets.logo} 
+          alt="" />
+        </Link>
       <ul className="navbar-menu">
         <Link to="/" onClick={() => setMenu("home")} className={`${menu === "home" ? "active" : ""}`}>home</Link>
         

@@ -26,6 +26,8 @@
     border: 2px solid #FF4C24;
 }
 .food-item-image{
+    object-fit: cover;
+
    width: 100%;
    max-height: 210px;
    border-radius: 15px 15px 0px 0px;
