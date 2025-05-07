@@ -256,7 +256,7 @@ const FoodItem = ({ image, name, price, desc, id, averageRating, reviews }) => {
     const [showRecommendations, setShowRecommendations] = useState(false);
     const [showReviews, setShowReviews] = useState(false);
 
-    const { cartItems, addToCart, removeFromCart, url, currency } = useContext(StoreContext);
+    const { cartItems, addToCart, removeFromCart, url, currency, mess } = useContext(StoreContext);
 
     const handleRecommendationToggle = () => {
         setShowRecommendations(!showRecommendations);
@@ -268,7 +268,11 @@ const FoodItem = ({ image, name, price, desc, id, averageRating, reviews }) => {
 
     return (
         <>
-            <div className='food-item'>
+            <div className='food-item'
+                style={{
+                    backgroundColor: mess?.cardColor? mess.cardColor : "white"
+                }}
+            >
                 <div className='food-item-img-container'>
                     <img className='food-item-image' src={url + "/images/" + image} alt={name} />
                     {!cartItems[id] ? (
@@ -287,7 +291,11 @@ const FoodItem = ({ image, name, price, desc, id, averageRating, reviews }) => {
                         <div className="food-item-stars">{renderStars(averageRating)} ({averageRating.toFixed(1)})</div>
                     </div>
 
-                    <p className="food-item-desc">{desc}</p>
+                    <p className="food-item-desc"
+                        style={{
+                            color: mess?.textColor? mess.textColor : "darkgray"
+                        }}
+                    >{desc}</p>
                     <p className="food-item-price">{currency}{price}</p>
                     <button className="recommendation-toggle-button" onClick={handleRecommendationToggle}>
                         Similar Foods

@@ -15,14 +15,15 @@ const MessItem = ({ messSelected,image, name, price, desc , id }) => {
                 
             }
         >
-            <div className='mess-item-img-container'>
-                <img className='mess-item-image' src={url+"/images/"+image} alt="" />
-            </div>
+            
             <div className="mess-item-info">
                 <div className="mess-item-name-rating">
                     <p>{name}</p> 
                 </div>
                 <p className="mess-item-desc">{desc}</p>
+            </div>
+            <div className='mess-item-img-container'>
+                <img className='mess-item-image' src={url+"/images/"+image} alt="" />
             </div>
         </div>
     )

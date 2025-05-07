@@ -69,8 +69,7 @@ const StoreContextProvider = (props) => {
     useEffect(() => {
         async function loadData() {
             await fetchMessList();
-            //console.log(mess);
-            
+     
             
             if(mess){await fetchFoodList();}
             
@@ -80,7 +79,7 @@ const StoreContextProvider = (props) => {
             }
         }
         loadData()
-    }, [mess_list,mess])
+    }, [mess])
     
     
         // const loadData = async() => {
