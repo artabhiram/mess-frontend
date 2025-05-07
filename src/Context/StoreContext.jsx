@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
-    const url = "http://localhost:4000"
+    const url = "https://mess-backend-p42j.onrender.com"
     const [food_list, setFoodList] = useState([]);
     const [mess_list, setMessList] = useState([]);
     const [mess, setMess] = useState(mess_list[0]);
